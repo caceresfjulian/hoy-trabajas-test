@@ -38,6 +38,13 @@ class BanksController < ApplicationController
   end
 
   def destroy
+    if @bank.delete
+      flash[:errors] = 'Bank Deleted Successfully'
+      redirect_to banks_path
+    else
+      flash[:errors] = @bank.errors.full_messages
+      redirect_to banks_path
+    end
   end
 
   private 
