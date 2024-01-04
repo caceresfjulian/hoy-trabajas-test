@@ -18,8 +18,7 @@
         <% @banks.each do |b| %>
           <tr>
             <td class="text-center"> <%= b.id %> </td>
-            <td class="text-center"> <%= link_to b.name, bank_path(b) %> </td>
-            <td class="text-center"><%= button_to "Show",bank_path(b),method: :get, class:"btn-success border-0 rounded-pill px-3 py-2" %></td>
+            <td class="text-center"> <%= b.name %> </td>
             <td class="text-center"><%= button_to "Edit",edit_bank_path(b),method: :get, class:"btn-primary border-0 rounded-pill px-3 py-2" %></td>
             <td class="text-center"><%= button_to "Delete",bank_path(b),method: :delete, class:"btn-danger border-0 rounded-pill px-3 py-2" %></td>
           </tr>

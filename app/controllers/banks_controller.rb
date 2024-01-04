@@ -13,10 +13,10 @@ class BanksController < ApplicationController
   def create
     @bank = Bank.create(bank_params)
     if @bank.save
-      flash[:success] = 'Bank Created Successfully'
+      flash[:errors] = 'Bank Created Successfully'
       redirect_to banks_path
     else
-      flash.now[:error] = @bank.errors.full_messages
+      flash[:errors] = @bank.errors.full_messages
       render :new
     end
   end
@@ -28,6 +28,13 @@ class BanksController < ApplicationController
   end
 
   def update
+    if @bank.update(bank_params)
+      flash[:errors] = 'Bank Updated Successfully'
+      redirect_to banks_path
+    else
+      flash[:errors] = @bank.errors.full_messages
+      redirect_to edit_employee_path
+    end
   end
 
   def destroy
