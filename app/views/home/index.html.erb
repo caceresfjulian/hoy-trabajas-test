@@ -3,7 +3,7 @@
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
   <a href="/banks">Go to Banks</a>
 <% else %>
-  <%= button_to "Sign in", new_user_session_path %> 
+  <%= link_to "Sign in", new_user_session_path %> 
   <%= link_to 'Sign Up', new_user_registration_path %>
 <% end %>
 <h1>Landing page</h1>
