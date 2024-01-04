@@ -18,17 +18,17 @@
         <% @banks.each do |b| %>
           <tr>
             <td class="text-center"> <%= b.id %> </td>
-            <td class="text-center"> <%= link_to b.name, bank_path(e) %> </td>
-            <td class="text-center"><%= button_to "Show",bank_path(e),method: :get, class:"btn-success border-0 rounded-pill shadow px-3 py-2" %></td>
-            <td class="text-center"><%= button_to "Edit",edit_bank_path(e),method: :get, class:"btn-primary border-0 rounded-pill shadow px-3 py-2" %></td>
-            <td class="text-center"><%= button_to "Delete",bank_path(e),method: :delete, class:"btn-danger border-0 rounded-pill shadow px-3 py-2" %></td>
+            <td class="text-center"> <%= link_to b.name, bank_path(b) %> </td>
+            <td class="text-center"><%= button_to "Show",bank_path(b),method: :get, class:"btn-success border-0 rounded-pill px-3 py-2" %></td>
+            <td class="text-center"><%= button_to "Edit",edit_bank_path(b),method: :get, class:"btn-primary border-0 rounded-pill px-3 py-2" %></td>
+            <td class="text-center"><%= button_to "Delete",bank_path(b),method: :delete, class:"btn-danger border-0 rounded-pill px-3 py-2" %></td>
           </tr>
         <% end %>
       </ol>
     </table>
   </div>
   <div class="d-flex">
-    <%= button_to "Add New Bank", new_bank_path, method: :get ,class:"btn-warning border-0 rounded-pill shadow p-3 m-3" %>
+    <%= button_to "Add New Bank", new_bank_path, method: :get ,class:"btn-warning border-0 rounded-pill py-1 px-3 m-3" %>
   </div>
 </div>
 <a href="/">Home</a>
