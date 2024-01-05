@@ -3,4 +3,6 @@ class Supplier < ApplicationRecord
   validates :nit, format: { with: /\b\d{9}-\d{1}\b|\b\d{9}\b/, message: "should have 9 digits and optionally a dash (-) and a number"}
   validates :contact_phone, { length: { maximum: 10 }}
   validates :account_number, { length: { maximum: 15 }}
+
+  belongs_to :bank
 end

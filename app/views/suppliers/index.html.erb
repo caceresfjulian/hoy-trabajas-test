@@ -15,7 +15,9 @@
           <td class="text-center"> NIT </td>
           <td class="text-center"> Contact name </td>
           <td class="text-center"> Contact phone </td>
+          <td class="text-center"> Bank </td>
           <td class="text-center"> Account number </td>
+          <td colspan=2 class="text-center"> Action </td>
         </thead>
         <% @suppliers&.each do |s| %>
           <tr>
@@ -23,7 +25,10 @@
             <td class="text-center"> <%= s.nit %> </td>
             <td class="text-center"> <%= s.contact_name %> </td>
             <td class="text-center"> <%= s.contact_phone %> </td>
+            <td class="text-center"> <%= s.bank.name %> </td>
             <td class="text-center"> <%= s.account_number %> </td>
+            <td class="text-center"><%= button_to "Edit",edit_supplier_path(s),method: :get, class:"btn-primary border-0 rounded-pill px-3 py-2" %></td>
+            <td class="text-center"><%= button_to "Delete",supplier_path(s),method: :delete, class:"btn-danger border-0 rounded-pill px-3 py-2" %></td>
           </tr>
         <% end %>
       </ol>

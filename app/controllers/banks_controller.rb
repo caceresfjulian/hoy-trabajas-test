@@ -14,6 +14,7 @@ class BanksController < ApplicationController
     @bank = Bank.create(bank_params)
     if @bank.valid?
       @bank.save
+      flash[:errors] = 'Bank Created Successfully'
       redirect_to banks_path
     else
       flash.now[:messages] = @bank.errors.full_messages
@@ -38,12 +39,17 @@ class BanksController < ApplicationController
   end
 
   def destroy
-    if @bank.delete
-      flash[:errors] = 'Bank Deleted Successfully'
-      redirect_to banks_path
+    if @bank.suppliers.length == 0
+      if @bank.delete
+        flash[:errors] = 'Bank Deleted Successfully'
+        redirect_to banks_path
+      else
+        flash[:errors] = @bank.errors.full_messages
+        redirect_to banks_path
+      end
     else
-      flash[:errors] = @bank.errors.full_messages
-      redirect_to banks_path
+      flash[:errors] = 'Bank cannot be deleted because some suppliers are associated to it'
+      redirect_to banks_path, status: :conflict
     end
   end
 
