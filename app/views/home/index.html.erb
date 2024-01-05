@@ -1,9 +1,11 @@
-<% if user_signed_in? %> 
-    Banks: <%= @banks.length %>
-    Suppliers: <%= @suppliers.length %>
-<% else %>
-  <main class="mt-3 text-center d-flex flex-column justify-content-center">
+<main class="mt-3 text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 400px">
+  <% if user_signed_in? %> 
+    <h1>Dashboard 
+      <span class="badge bg-primary">Banks: <%= @banks.length %></span>
+      <span class="badge bg-success">Suppliers: <%= @suppliers.length %></span>
+    </h1>      
+  <% else %>
     <h1>Landing page</h1>
     <p class="lead">This is a technical test for Hoy Trabajas</p>
-  </main>
-<% end %>
+  <% end %>
+</main>

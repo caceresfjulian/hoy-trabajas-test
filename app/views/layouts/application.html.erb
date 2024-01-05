@@ -18,17 +18,21 @@
     <%= render "layouts/navbar" %>
     <div class="container">
       <%= yield %>
-      <p class="notice">
-    </p> 
-    <div style="bottom: 25px; left: 25px; position: absolute">  
-      <% if notice%>
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 250px;">
-          <%= notice %>
-          <button data-bs-dismiss="alert" type="button" class="btn-close" aria-label="Close"></button>
-        </div>
-      <% end %>
-    </div>
-    <p class="alert"><%= alert %></p> 
+      <p class="notice"></p> 
+      <div style="bottom: 25px; left: 25px; position: absolute">  
+        <% if notice%>
+          <div class="alert alert-success alert-dismissible fade show" role="alert" style="max-width: 350px; min-width: 250px;">
+            <%= notice %>
+            <button data-bs-dismiss="alert" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <% if alert != nil%>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert" style="max-width: 350px; min-width: 250px;">
+            <%= alert %>
+            <button data-bs-dismiss="alert" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+        <% end %>
+      </div>
     </div>    
   </body>
 </html>
