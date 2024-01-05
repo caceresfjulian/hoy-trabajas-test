@@ -7,23 +7,35 @@
     <% end %> 
   <% end %>
   <%= form_with model: @supplier, url: suppliers_path do |f| %>
-      <%= f.label :name, "Supplier's Name:" %>
-      <%= f.text_field :name, placeholder: "Enter Supplier's Name", class: "mb-2 form-control" %>
-      
-      <%= f.label :nit, "Supplier's NIT:" %>
-      <%= f.text_field :nit, placeholder: "Enter Supplier's NIT", class: "mb-2 form-control" %>
-      
-      <%= f.label :contact_name, "Contact Name:" %>
-      <%= f.text_field :contact_name, placeholder: "Enter Supplier's Contact Name", class: "mb-2 form-control" %>
-      
-      <%= f.label :contact_phone, "Contact Phone:" %>
-      <%= f.text_field :contact_phone, placeholder: "Enter Suppliers's Contact Phone", class: "mb-2 form-control" %>
+    <div class="d-flex justify-content-between w-100">
+      <%= f.label :name, "Supplier's Name:" %><i> Required</i>
+    </div>
+    <%= f.text_field :name, placeholder: "Enter Supplier's Name", class: "mb-2 form-control" %>
+    
+    <div class="d-flex justify-content-between w-100 align-items-end">
+      <%= f.label :nit, "Supplier's NIT:", class: 'w-50' %><i class="w-50 text-end"> Required. 9 digits and optionally a dash (-) and a digit</i>
+    </div>
+    <%= f.text_field :nit, placeholder: "Enter Supplier's NIT", class: "mb-2 form-control" %>
+    
+    <div class="d-flex justify-content-between w-100">
+      <%= f.label :contact_name, "Contact Name:" %><i class="w-50 text-end"> Required</i>
+    </div>
+    <%= f.text_field :contact_name, placeholder: "Enter Supplier's Contact Name", class: "mb-2 form-control" %>
+    
+    <div class="d-flex justify-content-between w-100">
+      <%= f.label :contact_phone, "Contact Phone:" %><i class="w-50 text-end"> Optional. 10 digits max</i>
+    </div>
+    <%= f.text_field :contact_phone, placeholder: "Enter Suppliers's Contact Phone", class: "mb-2 form-control" %>
 
-      <%= f.label :bank, "Bank:" %>
-      <%= f.select :bank, options_for_select(@banks.map { |bank| bank.name} || []), {} %>
+    <div class="d-flex w-100 justify-content-between">
+      <%= f.label :bank, "Bank:" %><i class="w-50 text-end"> Required</i>
+    </div>
+    <%= f.select :bank, options_for_select(@banks.map { |bank| bank.name} || []), {}, class: 'mb-2' %>
 
-      <%= f.label :account_number, "Account number:" %>
-      <%= f.text_field :account_number, placeholder: "Enter Suppliers's Account Number", class: "mb-2 form-control" %>
+    <div class="d-flex justify-content-between w-100">
+      <%= f.label :account_number, "Account number:", class: 'w-50' %><i class="w-50 text-end"> Optional. 15 digits max</i>
+    </div>
+    <%= f.text_field :account_number, placeholder: "Enter Suppliers's Account Number", class: "mb-2 form-control" %>
 
     <%= f.submit "Create Supplier", class: "btn-primary border-0 rounded-pill py-1 px-3" %>
   <% end %>
