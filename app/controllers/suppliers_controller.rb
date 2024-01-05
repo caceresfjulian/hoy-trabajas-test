@@ -1,5 +1,6 @@
 class SuppliersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_supplier_params, only: %i[edit update destroy]
 
   def index
     @suppliers = Supplier.all
@@ -26,6 +27,29 @@ class SuppliersController < ApplicationController
       flash.now[:messages] = @supplier.errors.full_messages
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @banks = Bank.all
+  end
+
+  def update
+    @banks = Bank.all
+    new_supplier_params = supplier_params.except(:bank)
+    bank = Bank.find_by(name: params[:supplier][:bank])
+    new_supplier_params[:bank_id] = bank.id
+
+    if @supplier.update(new_supplier_params)
+      flash[:errors] = 'Supplier Updated Successfully'
+      redirect_to suppliers_path
+    else
+      flash.now[:messages] = @supplier.errors.full_messages
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    print 'DESTROYING SUPPLIER'
   end
 
   private
