@@ -32,6 +32,10 @@ rails db:create (Este comando no es necesario dado que el archivo .sqlite3 se en
 bundle exec rails server
 ```
 
+## Datos de prueba
+Correo: test@mail.com
+Contraseña: 123456
+
 ## Imágenes de la aplicación
 ### Inicio
 ![image](https://github.com/caceresfjulian/hoy-trabajas-test/assets/47955341/a3c66065-bc86-49ac-99f8-93984ecd9bb2)
