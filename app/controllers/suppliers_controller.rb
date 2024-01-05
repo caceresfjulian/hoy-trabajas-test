@@ -40,7 +40,13 @@ class SuppliersController < ApplicationController
   end
 
   def destroy
-    print 'DESTROYING SUPPLIER'
+    if @supplier.delete
+      flash[:errors] = 'Supplier Deleted Successfully'
+      redirect_to suppliers_path
+    else
+      flash[:errors] = @supplier.errors.full_messages
+      redirect_to suppliers_path
+    end
   end
 
   private
