@@ -12,12 +12,12 @@ class BanksController < ApplicationController
 
   def create
     @bank = Bank.create(bank_params)
-    if @bank.save
-      flash[:errors] = 'Bank Created Successfully'
+    if @bank.valid?
+      @bank.save
       redirect_to banks_path
     else
-      flash[:errors] = @bank.errors.full_messages
-      render :new
+      flash.now[:messages] = @bank.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,8 +32,8 @@ class BanksController < ApplicationController
       flash[:errors] = 'Bank Updated Successfully'
       redirect_to banks_path
     else
-      flash[:errors] = @bank.errors.full_messages
-      redirect_to edit_employee_path
+      flash.now[:messages] = @bank.errors.full_messages
+      render :edit, status: :unprocessable_entity
     end
   end
 

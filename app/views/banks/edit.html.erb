@@ -5,10 +5,10 @@
     </div>
     <div class="card-body">
       <!--Error Message-->
-      <% if flash[:errors] %>
-        <% flash[:errors].each do |error| %>
-          <p class="text-danger"><%= error %></p>
-        <% end %>
+      <% if flash[:messages]%>
+        <% flash[:messages].each do |message|%>
+          <p class="text-danger"><%= message%></p>
+        <% end %> 
       <% end %>
       <!-- Form -->
       <%= form_with model: @bank do |f| %>
