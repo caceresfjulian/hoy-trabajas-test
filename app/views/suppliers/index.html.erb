@@ -1,0 +1,36 @@
+<div class="flex-column" style = "height: auto; ">
+  <h1> Suppliers </h1>
+  <!--Error Message-->
+  <% if flash[:errors] %>
+    <% flash.each do |name,message| %>
+      <p class="text-danger"><%= message%></p>
+    <% end %>
+  <% end %>
+  <!-- Suppliers Table -->
+  <div>
+    <table class="table table-info table-striped">
+      <ol class="fs-2">
+        <thead class="table-secondary">
+          <td class="text-center"> Name </td>
+          <td class="text-center"> NIT </td>
+          <td class="text-center"> Contact name </td>
+          <td class="text-center"> Contact phone </td>
+          <td class="text-center"> Account number </td>
+        </thead>
+        <% @suppliers&.each do |s| %>
+          <tr>
+            <td class="text-center"> <%= s.name %> </td>
+            <td class="text-center"> <%= s.nit %> </td>
+            <td class="text-center"> <%= s.contact_name %> </td>
+            <td class="text-center"> <%= s.contact_phone %> </td>
+            <td class="text-center"> <%= s.account_number %> </td>
+          </tr>
+        <% end %>
+      </ol>
+    </table>
+  </div>
+  <div class="d-flex">
+    <%= button_to "Add New Supplier", new_supplier_path, method: :get ,class:"btn-warning border-0 rounded-pill py-1 px-3 m-3" %>
+  </div>
+</div>
+<a href="/">Home</a>
