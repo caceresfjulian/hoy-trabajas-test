@@ -4,7 +4,7 @@ class SuppliersController < ApplicationController
   before_action :load_banks, only: %i[index new create edit update]
 
   def index
-    @suppliers = Supplier.all
+    @suppliers = Supplier.order(:updated_at).page params[:page]
   end
 
   def new

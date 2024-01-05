@@ -5,4 +5,6 @@ class Supplier < ApplicationRecord
   validates :account_number, { length: { maximum: 15 }}
 
   belongs_to :bank
+
+  paginates_per 10
 end

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
   root to: "home#index"
   resources :banks
-  resources :suppliers
+  resources :suppliers do
+    get '/page/:page', action: :index, on: :collection, as: :page
+  end
 end
