@@ -26,9 +26,17 @@
             <button data-bs-dismiss="alert" type="button" class="btn-close" aria-label="Close"></button>
           </div>
         <% end %>
-        <% if alert != nil%>
+        <% if alert != nil %>
           <div class="alert alert-danger alert-dismissible fade show" role="alert" style="max-width: 350px; min-width: 250px;">
             <%= alert %>
+            <button data-bs-dismiss="alert" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <% if flash[:errors] %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert" style="max-width: 350px; min-width: 250px;">
+            <% flash.each do |name,message| %>
+              <%= message%>
+            <% end %>
             <button data-bs-dismiss="alert" type="button" class="btn-close" aria-label="Close"></button>
           </div>
         <% end %>
