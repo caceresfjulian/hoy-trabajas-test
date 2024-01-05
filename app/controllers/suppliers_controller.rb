@@ -1,26 +1,21 @@
 class SuppliersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_supplier_params, only: %i[edit update destroy]
+  before_action :load_banks, only: %i[index new create edit update]
 
   def index
     @suppliers = Supplier.all
-    @banks = Bank.all
   end
 
   def new
-    @banks = Bank.all
     @supplier = Supplier.new
   end
 
   def create
-    @banks = Bank.all
-    new_supplier_params = supplier_params.except(:bank)
-    bank = Bank.find_by(name: params[:supplier][:bank])
-    new_supplier_params[:bank_id] = bank.id
+    new_supplier_params = prepare_supplier_params
     @supplier = Supplier.new(new_supplier_params)
 
-    if @supplier.valid?
-      @supplier.save
+    if @supplier.save
       flash[:errors] = 'Supplier Created Successfully'
       redirect_to suppliers_path
     else
@@ -30,14 +25,10 @@ class SuppliersController < ApplicationController
   end
 
   def edit
-    @banks = Bank.all
   end
 
   def update
-    @banks = Bank.all
-    new_supplier_params = supplier_params.except(:bank)
-    bank = Bank.find_by(name: params[:supplier][:bank])
-    new_supplier_params[:bank_id] = bank.id
+    new_supplier_params = prepare_supplier_params
 
     if @supplier.update(new_supplier_params)
       flash[:errors] = 'Supplier Updated Successfully'
@@ -60,5 +51,16 @@ class SuppliersController < ApplicationController
 
   def supplier_params
     params.require(:supplier).permit(:name, :nit, :contact_name, :contact_phone, :bank, :account_number)
+  end
+
+  def load_banks
+    @banks = Bank.all
+  end
+
+  def prepare_supplier_params
+    new_supplier_params = supplier_params.except(:bank)
+    bank = Bank.find_by(name: params[:supplier][:bank])
+    new_supplier_params[:bank_id] = bank.id if bank
+    new_supplier_params
   end
 end
