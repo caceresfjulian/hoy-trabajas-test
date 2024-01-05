@@ -1,3 +1,3 @@
 class Bank < ApplicationRecord
-  validates :name, length: { in: 1..50 }, uniqueness: { case_sensitive: false }, presence: true
+  validates :name, length: { maximum: 50 }, uniqueness: { case_sensitive: false }, presence: true
 end
